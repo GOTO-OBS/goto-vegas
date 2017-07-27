@@ -6,8 +6,10 @@ python:
   - '3.6'
 install:
   - source .ci/travis.sh
+script:
+  - python .ci/score_classifier.py
+after_script:
+  - python .ci/update_leaderboard.py
 #branches:
 #  except:
 #    - master
-script:
-  - echo "hi"

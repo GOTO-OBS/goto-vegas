@@ -15,8 +15,7 @@ conda config --set always_yes yes --set changeps1 no
 conda update -q conda
 conda info -a
 
-# Download training set
-python .ci/download_training_set.py
+# Download training and test set data
+python .ci/download_data.py
 export TRAINING_SET_URI=""
-
-# Download
+export TEST_SET_URI=""
