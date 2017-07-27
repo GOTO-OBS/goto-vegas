@@ -7,8 +7,8 @@ import shutil
 
 
 urls = [
-    (os.environ.get("TRAINING_SET_URI"), "training_data/training_set.gz"),
-    (os.environ.get("TEST_SET_URI"), "test_data/test_set.gz")
+    (os.environ.get("TRAINING_SET_URI"), "data/training_set.gz"),
+    (os.environ.get("TEST_SET_URI"), "data/test_set.gz")
 ]
 
 for remote_path, local_path in urls:
@@ -18,7 +18,7 @@ for remote_path, local_path in urls:
         continue
 
     if not os.path.exists(os.path.dirname(local_path)):
-        os.mkdirs(os.path.dirname(local_path))
+        os.mkdir(os.path.dirname(local_path))
 
 
     response = requests.get(remote_path, stream=True)
