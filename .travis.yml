@@ -5,7 +5,7 @@ python:
   - '3.5'
   - '3.6'
 install:
-  - source .ci/travis.#sh
+  - source .ci/travis.sh
 #branches:
 #  except:
 #    - master

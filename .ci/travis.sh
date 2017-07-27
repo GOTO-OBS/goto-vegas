@@ -12,3 +12,9 @@ conda info -a
 conda create --yes -n py python=$PYTHON_VERSION
 source activate py
 conda install numpy scipy scikit-learn
+
+# Download training set
+python scripts/download_training_set.py
+export TRAINING_SET_URI=""
+
+# Download
