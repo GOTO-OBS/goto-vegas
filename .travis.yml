@@ -9,3 +9,5 @@ install:
 #branches:
 #  except:
 #    - master
+script:
+  - echo "hi"

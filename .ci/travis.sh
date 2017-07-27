@@ -16,7 +16,7 @@ conda update -q conda
 conda info -a
 
 # Download training set
-python scripts/download_training_set.py
+python .ci/download_training_set.py
 export TRAINING_SET_URI=""
 
 # Download

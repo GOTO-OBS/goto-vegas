@@ -15,8 +15,6 @@ if uri is not None:
         shutil.copyfileobj(response.raw, fp)
     del response
 
-    print("Training set downloaded to {}".format(local_path))
-
     os.system("gunzip -v {}".format(local_path))
 
 else:
