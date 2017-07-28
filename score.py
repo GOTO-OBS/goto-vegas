@@ -3,6 +3,7 @@
 """ Score the classifier and update the local leaderboard. """
 
 from __future__ import division, print_function
+import numpy as np
 import os
 import requests
 import sys
@@ -105,8 +106,8 @@ if os.environ.get("TRAVIS"):
 
 
     entries = Table.read("entries.csv", format="csv")
-    entries.sort("score")
-    entries = entries[::-1]
+    indices = np.argsort(entries["score"])[::-1]
+    entries = entries[indices]
 
     column_names = ["rank", "time", "branch", "commit", "python", "train time", 
                     "test time", "transients found", "transients missed", 
