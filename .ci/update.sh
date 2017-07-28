@@ -5,7 +5,5 @@ if [ -n "$GITHUB_API_KEY" ]; then
   cd $TRAVIS_BUILD_DIR
   git add entries.csv README.md
   git -c user.name="referee" -c user.email="referee" commit -m "Updating scoreboard [ci skip]"
-  echo $TRAVIS_REPO_SLUG
-  echo $GITHUB_USER
-  git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG master
+  git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/goto-obs/goto-vegas master
 fi

@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-""" Score the classifier and update the remote leaderboard. """
+""" Score the classifier and update the local leaderboard. """
 
 from __future__ import division, print_function
 import inspect
 import os
 import requests
-import shutil
 import sys
 from astropy.table import Table, vstack
 from datetime import datetime
@@ -14,7 +13,7 @@ from glob import glob
 from time import time
 
 cwd = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-sys.path.insert(0, os.path.dirname(cwd)) 
+sys.path.insert(0, os.path.dirname(cwd))
 
 from classifier import Classifier
 
@@ -64,7 +63,7 @@ predictor_names = [
 training_set_paths = glob("training_set/*.csv")
 if len(training_set_paths) == 0:
     print("No training set data")
-    sys.exit(0)
+    sys.exit(1)
 
 training_set = vstack([
     Table.read(path, format="csv") for path in training_set_paths])
@@ -75,7 +74,7 @@ training_set_classifications = (training_set["srctype"] == 1)
 test_set_paths = glob("test_set/*.csv")
 if len(test_set_paths) == 0:
     print("No test set data")
-    sys.exit(0)
+    sys.exit(1)
 
 test_set = vstack([
     Table.read(path, format="csv") for path in test_set_paths])
@@ -102,9 +101,9 @@ entry = [
     datetime.now().strftime("%Y/%m/%d %I:%M:%s"), # now
     os.environ["TRAVIS_BRANCH"], # branch
     os.environ["TRAVIS_COMMIT"], # commit hash
-    "https://github.com/{TRAVIS_REPO_SLUG}/tree/{TRAVIS_BRANCH}".format(**os.environ), # branch_url
-    "https://travis-ci.org/{TRAVIS_REPO_SLUG}/builds/{TRAVIS_BUILD_ID}".format(**os.environ), # travis_url
-    "https://github.com/{TRAVIS_REPO_SLUG}/commit/{TRAVIS_COMMIT}".format(**os.environ), # commit_url
+    "https://github.com/goto-obs/goto-vegas/tree/{TRAVIS_BRANCH}".format(**os.environ), # branch_url
+    "https://travis-ci.org/goto-obs/goto-vegas/builds/{TRAVIS_BUILD_ID}".format(**os.environ), # travis_url
+    "https://github.com/goto-obs/goto-vegas/commit/{TRAVIS_COMMIT}".format(**os.environ), # commit_url
     os.environ["TRAVIS_PYTHON_VERSION"], # python_version
     human_readable(t_train), # train_time
     human_readable(t_test), # test_time
@@ -117,13 +116,9 @@ entry = [
 # Get the latest copy of entries.csv from GitHub, and update it with this entry
 response = requests.get(
     "https://raw.githubusercontent.com/{TRAVIS_REPO_SLUG}/master/entries.csv"\
-    .format(**os.environ), stream=True)
-
-with open("entries.csv", "wb") as fp:
-    shutil.copyfileobj(response.raw, fp)
-    print("response:\n".format(response.raw))
-    
-#fp.write("\n{}".format(",".join(entry)))
+    .format(**os.environ))
+with open("entries.csv", "w") as fp:
+    fp.write("{}\n{}".format(response.content, ",".join(entry)))
 del response
 
 
@@ -146,27 +141,9 @@ for rank, entry in enumerate(entries[:10], start=1):
     kwds.update({k: entry[k] for k in entry.dtype.names})
     top10_by_score += lb_row_formatter.format(**kwds)
 
-
-# Update the leaderboard on the README.md
+# Update the README.md
 with open("README.md.template", "r") as fp:
-    contents = fp.read()
+    template = fp.read()
 
 with open("README.md", "w") as fp:
-    fp.write(contents.format(top10_by_score=top10_by_score))
-
-# Commit the new README.md and entries.csv to GitHub
-os.system("cat README.md")
-
-
-# [links to build]<datetime> | [links to branch]<branch_name> |  [links to commit]<commit hash> | <python version> | <t_train> | <t_test> | <score>
-
-
-# Save the result
-#result_row_format = \
-#"{TRAVIS_REPO_SLUG}:{TRAVIS_BRANCH}
-
-
-
-
-
-print("score_classifier.py updated")
+    fp.write(template.format(top10_by_score=top10_by_score))
