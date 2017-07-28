@@ -6,9 +6,9 @@ python:
   - 3.6
 install:
   - source .ci/travis.sh
-script:
   - python .ci/download_data.py
-  - python .ci/score_classifier.py
+script:
+  - python score.py
 after_script:
   - source .ci/update.sh
 #branches:
