@@ -97,12 +97,12 @@ if os.environ.get("TRAVIS"):
     ]
 
     # Get the latest copy of entries.csv from GitHub, and update it with this entry
-    response = requests.get(
+    r = requests.get(
         "https://raw.githubusercontent.com/{TRAVIS_REPO_SLUG}/master/entries.csv"\
         .format(**os.environ))
 
     with open("entries.csv", "w") as fp:
-        fp.write("{}\n{}".format(response.content, ",".join(entry)))
+        fp.write("{}\n{}".format(r.content.decode("utf-8"), ",".join(entry)))
 
 
     entries = Table.read("entries.csv", format="csv")
@@ -134,3 +134,6 @@ if os.environ.get("TRAVIS"):
 
     with open("README.md", "w") as fp:
         fp.write(template.format(top10_by_score=leaderboard))
+
+    print("OK")
+    os.system("cat README.md")
