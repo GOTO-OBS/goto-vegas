@@ -76,27 +76,24 @@ test_set_paths = glob("test_set/*.csv")
 if len(test_set_paths) == 0:
     print("No test set data")
     sys.exit(0)
-    
+
 test_set = vstack([
     Table.read(path, format="csv") for path in test_set_paths])
 test_set_predictors = test_set[predictor_names]
 test_set_classifications = (test_set["srctype"] == 1)
 
-
-# Train the classifier
 classifier = Classifier()
 
+# Train the classifier.
 t = time()
 classifier.train(training_set_predictors, training_set_classifications)
 t_train = time() - t
 
 # Score the classifier.
-# correct = true transients that you found
-# missed = true transients that you missed
-# misclassified = normal stars that you classified as transients
+t = time()
 N_true_transients_found, N_true_transients_missed, N_false_positives, score \
     = classifier.score(test_set_predictors, test_set_classifications)
-t_test = time() - t_train
+t_test = time() - t
 
 # Prepare the entries row
 human_readable = lambda t: "{:.0f}s".format(t) if t < 60 else "{:.0f}m {:.0f}s".format(t/60, t % 60)
@@ -124,7 +121,9 @@ response = requests.get(
 
 with open("entries.csv", "wb") as fp:
     shutil.copyfileobj(response.raw, fp)
-    fp.write("\n{}".format(",".join(entry)))
+    print("response:\n".format(response.raw))
+    
+#fp.write("\n{}".format(",".join(entry)))
 del response
 
 

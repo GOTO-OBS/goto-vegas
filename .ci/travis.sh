@@ -14,8 +14,3 @@ conda config --set always_yes yes --set changeps1 no
 conda update -q conda
 conda install numpy scipy astropy scikit-learn
 conda info -a
-
-# Download training and test set data
-python .ci/download_data.py
-export TRAINING_SET_URI=""
-export TEST_SET_URI=""
