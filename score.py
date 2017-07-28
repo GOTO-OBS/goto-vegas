@@ -78,9 +78,9 @@ print("""Summary:
 if os.environ.get("TRAVIS"):
 
     entry = [
-        datetime.now().strftime("%Y/%m/%d %I:%M:%s"),
+        datetime.now().strftime("%Y/%m/%d %I:%M:%S"),
         os.environ["TRAVIS_BRANCH"],
-        os.environ["TRAVIS_COMMIT"],
+        os.environ["TRAVIS_COMMIT"][:10],
         "https://github.com/goto-obs/goto-vegas/tree/{TRAVIS_BRANCH}"\
             .format(**os.environ),
         "https://travis-ci.org/goto-obs/goto-vegas/builds/{TRAVIS_BUILD_ID}"\
@@ -111,17 +111,17 @@ if os.environ.get("TRAVIS"):
 
     column_names = ["rank", "time", "branch", "commit", "python", "train time", 
                     "test time", "transients found", "transients missed", 
-                    "false positives", "score", "x"]
-
-    leaderboard = "| {0} |\n|-{1}-|\n".format(
-        " | ".join([c.title() for c in column_names]),
-        "-|-".join(["-" * len(c) for c in column_names]))
+                    "false positives", "score"]
 
     leaderboard_row = \
         "|{rank}|[{time}]({travis_url})|[{branch}]({branch_url})"\
         "|[{commit_hash}]({commit_url})|{python_version}|{train_time}"\
         "|{test_time}|{num_transients_found}|{num_transients_missed}"\
-        "|{num_false_positives}|{score}|x|\n"
+        "|{num_false_positives}|{score}|\n"
+
+    leaderboard = "| {0} |\n|-{1}-|\n".format(
+        " | ".join([c.title() for c in column_names]),
+        "-|-".join(["-" * len(c) for c in column_names]))
 
     for rank, entry in enumerate(entries[:10], start=1):
         kwds = dict(rank=rank)
