@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/GOTO-OBS/goto-vegas.svg?branch=master)](https://travis-ci.org/GOTO-OBS/goto-vegas)
 
 # GOTO Vegas
-Classify transient sources accurately and efficiently.
+Classify candidate transient sources accurately and efficiently.
 
 
 # Submit a classifier for evaluation
