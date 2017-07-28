@@ -80,10 +80,10 @@ if os.environ.get("TRAVIS"):
     entry = [
         datetime.now().strftime("%Y/%m/%d %I:%M:%S"),
         os.environ["TRAVIS_BRANCH"],
-        os.environ["TRAVIS_COMMIT"][:10],
+        os.environ["TRAVIS_COMMIT"][:8],
         "https://github.com/goto-obs/goto-vegas/tree/{TRAVIS_BRANCH}"\
             .format(**os.environ),
-        "https://travis-ci.org/goto-obs/goto-vegas/builds/{TRAVIS_BUILD_ID}"\
+        "https://travis-ci.org/GOTO-OBS/goto-vegas/builds/{TRAVIS_BUILD_ID}"\
             .format(**os.environ),
         "https://github.com/goto-obs/goto-vegas/commit/{TRAVIS_COMMIT}"\
             .format(**os.environ),
@@ -109,8 +109,8 @@ if os.environ.get("TRAVIS"):
     indices = np.argsort(entries["score"])[::-1]
     entries = entries[indices]
 
-    column_names = ["rank", "time", "branch", "commit", "train time", 
-                    "test time", "transients found", "transients missed", 
+    column_names = ["rank", "time", "branch", "commit", "train time",
+                    "test time", "transients found", "transients missed",
                     "false positives", "score"]
 
     leaderboard_row = \
