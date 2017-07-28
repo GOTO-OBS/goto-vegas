@@ -10,7 +10,7 @@ script:
   - python .ci/download_data.py
   - python .ci/score_classifier.py
 after_script:
-  - source .ci/update_leaderboard.sh
+  - source .ci/update.sh
 #branches:
 #  except:
 #    - master
