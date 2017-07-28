@@ -6,7 +6,7 @@ Classify candidate transient sources accurately and efficiently.
 
 # Submit a classifier for evaluation
 Any member of the [GOTO organization on GitHub](https://github.com/GOTO-OBS) can 
-submit an entry. First, clone this repository and create a branch with a 
+submit a classifier for evaluation. Clone this repository and create a branch with a 
 representative name (e.g., something like ``<last_name>-<short_description>``) 
 and switch to that branch:
 
@@ -21,7 +21,8 @@ Now create your classifier by changing the behaviour of the ``Classifier`` class
 in [``classifier/classifier.py``](classifier/classifier.py). Specifically, you
 will want to change the code in the ``train`` and ``classify`` functions.
 
-Here is the worst kind of classifier, which will never find any transient:
+Here is the worst kind of classifier, which will never find any transient
+(but it gives an example of the expected input/outputs for each function):
 
 ````python
 # -*- coding: utf-8 -*-
@@ -59,7 +60,7 @@ class Classifier(BaseClassifier):
         return 0
 ````
 
-To submit your entry to the leaderboard, you will need to commit your changes and
+To submit your classifier to the leaderboard, you will need to commit your changes and
 push them to GitHub:
 
 ````
