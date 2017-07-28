@@ -1,1 +1,1 @@
-#time,branch,commit_hash,branch_url,travis_url,commit_url,python_version,train_time,test_time,num_transients_found,num_transients_missed,num_false_positives,score
+time,branch,commit_hash,branch_url,travis_url,commit_url,python_version,train_time,test_time,num_transients_found,num_transients_missed,num_false_positives,score
