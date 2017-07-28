@@ -4,10 +4,6 @@
 Classify transient sources accurately and efficiently.
 
 
-# Leaderboard
-{top10_by_score}
-
-
 # Submit a classifier for evaluation
 Any member of the [GOTO organization on GitHub](https://github.com/GOTO-OBS) can 
 submit an entry. First, clone this repository and create a branch with a 
