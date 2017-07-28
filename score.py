@@ -59,7 +59,7 @@ def human_readable_time(seconds):
     if seconds < 60:
         return "{:.0f}s".format(seconds)
     else:
-        return "{:.0f}m {:.0f}s".format(t/60, t % 60)
+        return "{:.0f}m {:.0f}s".format(seconds/60, seconds % 60)
 
 
 # Print a summary.
