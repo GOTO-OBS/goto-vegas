@@ -1,6 +1,5 @@
 #!/bin/bash -x
 
-
 # Download and install miniconda
 sudo apt-get update
 if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then

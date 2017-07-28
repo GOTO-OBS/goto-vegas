@@ -1,6 +1,7 @@
 # GOTO Vegas
-Classify transient sources, and throw away the junk.
+Classify transient sources accurately and efficiently.
 
+[![Build Status](https://travis-ci.org/GOTO-OBS/goto-vegas.svg?branch=master)](https://travis-ci.org/GOTO-OBS/goto-vegas)
 
 # Leaderboard
 {top10_by_score}

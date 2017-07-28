@@ -9,7 +9,7 @@ install:
 script:
   - python .ci/score_classifier.py
 after_script:
-  - python .ci/update_leaderboard.py
+  - python .ci/update_leaderboard.sh
 #branches:
 #  except:
 #    - master
