@@ -1,3 +1,4 @@
+env.sh
 *.pyc
-training_data/
-test_data/
+training_set/
+test_set/

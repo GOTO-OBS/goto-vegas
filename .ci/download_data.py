@@ -13,8 +13,8 @@ paths = [
 
 for local_folder, environment_key in paths:
 
-    if not os.path.exists(os.path.dirname(local_folder)):
-        os.mkdir(os.path.dirname(local_folder))
+    if not os.path.exists(os.path.dirname("{}/".format(local_folder))):
+        os.mkdir(os.path.dirname("{}/".format(local_folder)))
 
     # Loop over and grab all relevant data.
     index = 0
@@ -22,7 +22,8 @@ for local_folder, environment_key in paths:
         remote_path = os.environ.get(environment_key.format(index))
         if remote_path is None: break
 
-        response = requests.get(remote_path, stream=True)
+        response = requests.get(remote_path, stream=True, 
+            auth=(os.environ.get("HTTP_USER"), os.environ.get("HTTP_PASS")))
         local_path = os.path.join(local_folder, os.path.basename(remote_path))
         with open(local_path, "wb") as fp:
             shutil.copyfileobj(response.raw, fp)

@@ -15,10 +15,16 @@ class BaseClassifier(object):
         return None
 
     def score(self, predictors, classifications, **kwargs):
-        N_classified_correctly = 0
-        N_misclassified = 10
+        N_true_transients_found = 0
+        N_true_transients_missed = 1
+        N_false_positives = 10
         score = np.random.uniform(0, 1)
 
-        return (N_classified_correctly, N_misclassified, score)
+        return (
+            N_true_transients_found, 
+            N_true_transients_missed,
+            N_false_positives,
+            score
+        )
 
     
