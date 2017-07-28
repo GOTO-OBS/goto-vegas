@@ -111,7 +111,7 @@ if os.environ.get("TRAVIS"):
 
     column_names = ["rank", "time", "branch", "commit", "python", "train time", 
                     "test time", "transients found", "transients missed", 
-                    "false positives", "score"]
+                    "false positives", "score", "x"]
 
     leaderboard = "| {0} |\n|-{1}-|\n".format(
         " | ".join([c.title() for c in column_names]),
@@ -121,7 +121,7 @@ if os.environ.get("TRAVIS"):
         "|{rank}|[{time}]({travis_url})|[{branch}]({branch_url})"\
         "|[{commit_hash}]({commit_url})|{python_version}|{train_time}"\
         "|{test_time}|{num_transients_found}|{num_transients_missed}"\
-        "|{num_false_positives}|{score}|\n"
+        "|{num_false_positives}|{score}|x|\n"
 
     for rank, entry in enumerate(entries[:10], start=1):
         kwds = dict(rank=rank)
