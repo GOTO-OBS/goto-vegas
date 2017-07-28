@@ -35,9 +35,9 @@ class BaseClassifier(object):
             and the calculated score.
         """
 
-        N_true_transients_found = np.random.randint(high=len(predictors)/3)
-        N_true_transients_missed = np.random.randint(high=len(predictors)/3)
-        N_false_positives = np.random.randint(high=len(predictors)/3)
+        N_true_transients_found = np.random.randint(0, high=len(predictors)/3)
+        N_true_transients_missed = np.random.randint(0, high=len(predictors)/3)
+        N_false_positives = np.random.randint(0, high=len(predictors)/3)
         score = np.random.uniform(0, 1)
 
         return (
