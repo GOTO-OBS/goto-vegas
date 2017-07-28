@@ -4,7 +4,10 @@ Classify transient sources accurately and efficiently.
 [![Build Status](https://travis-ci.org/GOTO-OBS/goto-vegas.svg?branch=master)](https://travis-ci.org/GOTO-OBS/goto-vegas)
 
 # Leaderboard
-{top10_by_score}
+| Rank | Time | Branch | Commit | Python | Train Time | Test Time | Transients Found | Transients Missed | False Positives | Score | X |
+|------|------|--------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|---|
+|1|[2017/07/28 10:36:1501238206](https://travis-ci.org/goto-obs/goto-vegas/builds/258502437)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[9194c34ca9421404246018982eb27bf4c982c75d](https://github.com/goto-obs/goto-vegas/commit/9194c34ca9421404246018982eb27bf4c982c75d)|3.6|0s|0s|0|1|10|0.829|x|
+
 
 
 # Submit a classifier for evaluation
