@@ -11,6 +11,6 @@ script:
   - python score.py
 after_script:
   - source .ci/update.sh
-branches:
-  except:
-    - master
+#branches:
+#  except:
+#    - master
