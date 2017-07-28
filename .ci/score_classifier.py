@@ -7,10 +7,11 @@ import os
 import requests
 import shutil
 from astropy.table import Table, vstack
-from classifier import Classifier
 from datetime import datetime
 from glob import glob
 from time import time
+
+from .classifier import Classifier
 
 predictor_names = [
     "fpos2",
@@ -116,6 +117,11 @@ import os
 os.system("cat entries.csv")
 
 # Update the leaderboard on the README.md
+with open("README.md.template", "r") as fp:
+    contents = fp.read()
+
+#with open("README.md", "w") as fp:
+#    fp.write(contents.format(leaderboard=))
 
 # Commit the new README.md and entries.csv to GitHub
 
