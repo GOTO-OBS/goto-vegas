@@ -4,9 +4,10 @@ Classify transient sources accurately and efficiently.
 [![Build Status](https://travis-ci.org/GOTO-OBS/goto-vegas.svg?branch=master)](https://travis-ci.org/GOTO-OBS/goto-vegas)
 
 # Leaderboard
-| Rank | Time | Branch | Commit | Python | Train Time | Test Time | Transients Found | Transients Missed | False Positives | Score | X |
-|------|------|--------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|---|
-|1|[2017/07/28 10:36:1501238206](https://travis-ci.org/goto-obs/goto-vegas/builds/258502437)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[9194c34ca9421404246018982eb27bf4c982c75d](https://github.com/goto-obs/goto-vegas/commit/9194c34ca9421404246018982eb27bf4c982c75d)|3.6|0s|0s|0|1|10|0.829|x|
+| Rank | Time | Branch | Commit | Python | Train Time | Test Time | Transients Found | Transients Missed | False Positives | Score |
+|------|------|--------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|
+|1|[2017/07/28 10:36:1501238206](https://travis-ci.org/goto-obs/goto-vegas/builds/258502437)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[9194c34ca9421404246018982eb27bf4c982c75d](https://github.com/goto-obs/goto-vegas/commit/9194c34ca9421404246018982eb27bf4c982c75d)|3.6|0s|0s|0|1|10|0.829|
+|2|[2017/07/28 10:46:46](https://travis-ci.org/goto-obs/goto-vegas/builds/258505282)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[20b094db26](https://github.com/goto-obs/goto-vegas/commit/20b094db26e4a6dbad1ba7d3f82b400937ffd9dd)|3.6|0s|0s|0|1|10|0.233|
 
 
 
