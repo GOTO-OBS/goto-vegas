@@ -7,8 +7,8 @@ Classify transient sources accurately and efficiently.
 # Leaderboard
 | Rank | Time | Branch | Commit | Train Time | Test Time | Transients Found | Transients Missed | False Positives | Score |
 |------|------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|
-|1|[2017/07/28 11:35:15](https://travis-ci.org/goto-obs/goto-vegas/builds/258519388)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[964410dc](https://github.com/goto-obs/goto-vegas/commit/964410dcaf9d96559ef819c21f0e42e764920650)|0s|0s|19334|3955|4349|0.94|
-|2|[2017/07/28 11:43:28](https://travis-ci.org/GOTO-OBS/goto-vegas/builds/258522008)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[53b1ff77](https://github.com/goto-obs/goto-vegas/commit/53b1ff77323a3bd6d16205c105196bde2e211ab0)|0s|0s|10715|6783|1768|0.29|
+|1|[2017/07/28 11:35:15](https://travis-ci.org/goto-obs/goto-vegas/builds/258519388)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[964410dcaf](https://github.com/goto-obs/goto-vegas/commit/964410dcaf9d96559ef819c21f0e42e764920650)|0s|0s|19334|3955|4349|0.94|
+|2|[2017/07/28 11:47:55](https://travis-ci.org/GOTO-OBS/goto-vegas/builds/258523694)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[188fd3a1](https://github.com/goto-obs/goto-vegas/commit/188fd3a18b71b6e40ad5da9e50a92fb7f8f8acf7)|25020708m 56s|0s|6589|4156|20164|0.494|
 
 
 
