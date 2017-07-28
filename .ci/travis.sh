@@ -13,7 +13,7 @@ export PATH="$HOME/miniconda/bin:$PATH"
 hash -r
 conda config --set always_yes yes --set changeps1 no
 conda update -q conda
-conda install numpy scipy astropy sklearn
+conda install numpy scipy astropy scikit-learn
 conda info -a
 
 # Download training and test set data
