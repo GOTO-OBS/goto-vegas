@@ -7,7 +7,7 @@ python:
 install:
   - source .ci/travis.sh
 script:
-  - python .ci/score_classifier.py
+    - python -m .ci.score_classifier
 after_script:
   - python .ci/update_leaderboard.py
 #branches:

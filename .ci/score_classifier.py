@@ -11,7 +11,10 @@ from datetime import datetime
 from glob import glob
 from time import time
 
-from ..classifier import Classifier
+import sys
+sys.path.append("../")
+
+from classifier import Classifier
 
 predictor_names = [
     "fpos2",
