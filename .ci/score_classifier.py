@@ -12,9 +12,9 @@ from glob import glob
 from time import time
 
 import sys
-sys.path.append("../")
+sys.path.insert(0, os.path.abspath("../"))
 
-from classifier import Classifier
+from .classifier import Classifier
 
 predictor_names = [
     "fpos2",
