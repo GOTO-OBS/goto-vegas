@@ -3,19 +3,18 @@
 """ Score the classifier and update the remote leaderboard. """
 
 from __future__ import division, print_function
+import inspect
 import os
 import requests
 import shutil
+import sys
 from astropy.table import Table, vstack
 from datetime import datetime
 from glob import glob
 from time import time
 
-import sys
-import inspect
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0,parentdir) 
+cwd = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+sys.path.insert(0, os.path.dirname(cwd)) 
 
 from classifier import Classifier
 
@@ -62,14 +61,24 @@ predictor_names = [
 ]
 
 # Load all training set.
+training_set_paths = glob("training_set/*.csv")
+if len(training_set_paths) == 0:
+    print("No training set data")
+    sys.exit(0)
+
 training_set = vstack([
-    Table.read(path, format="csv") for path in glob("training_set/*.csv")])
+    Table.read(path, format="csv") for path in training_set_paths])
 training_set_predictors = training_set[predictor_names]
 training_set_classifications = (training_set["srctype"] == 1)
 
 # Load the test set
+test_set_paths = glob("test_set/*.csv")
+if len(test_set_paths) == 0:
+    print("No test set data")
+    sys.exit(0)
+    
 test_set = vstack([
-    Table.read(path, format="csv") for path in glob("test_set/*.csv")])
+    Table.read(path, format="csv") for path in test_set_paths])
 test_set_predictors = test_set[predictor_names]
 test_set_classifications = (test_set["srctype"] == 1)
 
