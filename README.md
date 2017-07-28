@@ -1,12 +1,19 @@
 [![Build Status](https://travis-ci.org/GOTO-OBS/goto-vegas.svg?branch=master)](https://travis-ci.org/GOTO-OBS/goto-vegas)
 
 # GOTO Vegas
-Classify candidate transient sources accurately and efficiently.
+Classify transient sources accurately and efficiently.
+
+
+# Leaderboard
+| Rank | Time | Branch | Commit | Train Time | Test Time | Transients Found | Transients Missed | False Positives | Score |
+|------|------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|
+|1|[2017/07/28 11:35:15](https://travis-ci.org/goto-obs/goto-vegas/builds/258519388)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[964410dcaf](https://github.com/goto-obs/goto-vegas/commit/964410dcaf9d96559ef819c21f0e42e764920650)|0s|0s|19334|3955|4349|0.94|
+
 
 
 # Submit a classifier for evaluation
 Any member of the [GOTO organization on GitHub](https://github.com/GOTO-OBS) can 
-submit a classifier for evaluation. Clone this repository and create a branch with a 
+submit an entry. First, clone this repository and create a branch with a 
 representative name (e.g., something like ``<last_name>-<short_description>``) 
 and switch to that branch:
 
@@ -21,8 +28,7 @@ Now create your classifier by changing the behaviour of the ``Classifier`` class
 in [``classifier/classifier.py``](classifier/classifier.py). Specifically, you
 will want to change the code in the ``train`` and ``classify`` functions.
 
-Here is the worst kind of classifier, which will never find any transient
-(but it gives an example of the expected input/outputs for each function):
+Here is the worst kind of classifier, which will never find any transient:
 
 ````python
 # -*- coding: utf-8 -*-
@@ -60,7 +66,7 @@ class Classifier(BaseClassifier):
         return 0
 ````
 
-To submit your classifier to the leaderboard, you will need to commit your changes and
+To submit your entry to the leaderboard, you will need to commit your changes and
 push them to GitHub:
 
 ````
