@@ -6,7 +6,7 @@ if [ -n "$GITHUB_API_KEY" ]; then
   # This is because Travis clones things in a bullshit detached state and shit gets
   # all Rick and Morty like if you try and hack it into force pushing back to GitHub
   # Got a better fix? PLEASE OPEN A PR
-  git clone git@github.com:$GITHUB_REPO_SLUG.git tmp
+  git clone git@github.com:$TRAVIS_REPO_SLUG.git tmp
   cp entries.csv tmp/
   cp README.md tmp/
   cd tmp/
