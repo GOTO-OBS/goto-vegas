@@ -59,7 +59,7 @@ def human_readable_time(seconds):
     if seconds < 60:
         return "{:.0f}s".format(seconds)
     else:
-        return "{:.0f}m {:.0f}s".format(seconds/60, seconds % 60)
+        return "{:.0f}m{:.0f}s".format(seconds/60, seconds % 60)
 
 
 # Print a summary.
@@ -79,7 +79,7 @@ print("""Summary:
 if os.environ.get("TRAVIS"):
 
     entry = [
-        datetime.now().strftime("%Y/%m/%d %I:%M:%S"),
+        datetime.now().strftime("%y/%m/%d %I:%M"),
         os.environ["TRAVIS_BRANCH"],
         os.environ["TRAVIS_COMMIT"][:8],
         "https://github.com/goto-obs/goto-vegas/tree/{TRAVIS_BRANCH}"\
