@@ -109,14 +109,14 @@ if os.environ.get("TRAVIS"):
     indices = np.argsort(entries["score"])[::-1]
     entries = entries[indices]
 
-    column_names = ["rank", "time", "branch", "commit", "python", "train time", 
+    column_names = ["rank", "time", "branch", "commit", "train time", 
                     "test time", "transients found", "transients missed", 
                     "false positives", "score"]
 
     leaderboard_row = \
         "|{rank}|[{time}]({travis_url})|[{branch}]({branch_url})"\
-        "|[{commit_hash}]({commit_url})|{python_version}|{train_time}"\
-        "|{test_time}|{num_transients_found}|{num_transients_missed}"\
+        "|[{commit_hash}]({commit_url})|{train_time}|{test_time}"\
+        "|{num_transients_found}|{num_transients_missed}"\
         "|{num_false_positives}|{score}|\n"
 
     leaderboard = "| {0} |\n|-{1}-|\n".format(
@@ -132,8 +132,5 @@ if os.environ.get("TRAVIS"):
     with open("README.md.template", "r") as fp:
         template = fp.read()
 
-    with open("README.md", "w") as fp:
-        fp.write(template.format(top10_by_score=leaderboard))
-
-    print("OK")
-    os.system("cat README.md")
+        with open("README.md", "w") as fp:
+            fp.write(template.format(top10_by_score=leaderboard))
