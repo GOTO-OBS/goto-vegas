@@ -11,7 +11,7 @@ from datetime import datetime
 from glob import glob
 from time import time
 
-from .classifier import Classifier
+from ..classifier import Classifier
 
 predictor_names = [
     "fpos2",
@@ -96,7 +96,7 @@ entry = [
     os.environ["TRAVIS_PYTHON_VERSION"], # python_version
     human_readable(t_train), # train_time
     human_readable(t_test), # test_time
-    str(N_true_transients_found), 
+    str(N_true_transients_found),
     str(N_true_transients_missed),
     str(N_false_positives),
     "{:.3f}".format(score)
@@ -113,18 +113,35 @@ with open("entries.csv", "wb") as fp:
 del response
 
 
-import os
 os.system("cat entries.csv")
+
+entries = Table.read("entries.csv", format="csv")
+entries.sort(keys=["score"])
+entries = entries[::-1]
+
+lb_header = """
+| Rank | Time | Branch | Commit | Python | Train time | Test time | Transients found | Transients missed | False positives | Score |
+|------|------|--------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|
+"""
+
+lb_row_formatter = "|{rank}|[{time}]({travis_url})|[{branch}]({branch_url})|[{commit_hash}]({commit_url})|{python_version}|{train_time}|{test_time}|{num_transients_found}|{num_transients_missed}|{num_false_positives}|{score}|\n"
+
+top10_by_score = lb_header
+for rank, entry in enumerate(entries[:10], start=1):
+    kwds = dict(rank=rank)
+    kwds.update({k: entry[k] for k in entry.dtype.names})
+    top10_by_score += lb_row_formatter.format(**kwds)
+
 
 # Update the leaderboard on the README.md
 with open("README.md.template", "r") as fp:
     contents = fp.read()
 
-#with open("README.md", "w") as fp:
-#    fp.write(contents.format(leaderboard=))
+with open("README.md", "w") as fp:
+    fp.write(contents.format(top10_by_score=top10_by_score))
 
 # Commit the new README.md and entries.csv to GitHub
-
+os.system("cat README.md")
 
 
 # [links to build]<datetime> | [links to branch]<branch_name> |  [links to commit]<commit hash> | <python version> | <t_train> | <t_test> | <score>
