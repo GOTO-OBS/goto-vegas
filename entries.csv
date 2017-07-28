@@ -1,1 +1,3 @@
 time,branch,commit_hash,branch_url,travis_url,commit_url,python_version,train_time,test_time,num_transients_found,num_transients_missed,num_false_positives,score
+
+2017/07/28 11:57:36,master,d425746b,https://github.com/goto-obs/goto-vegas/tree/master,https://travis-ci.org/GOTO-OBS/goto-vegas/builds/258526670,https://github.com/goto-obs/goto-vegas/commit/d425746bab8dabfbd58739bdf126423cd1737fd1,2.7,2m 8s,0s,6970,11303,14410,0.736
