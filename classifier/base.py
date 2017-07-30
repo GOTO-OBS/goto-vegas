@@ -2,6 +2,7 @@
 
 from __future__ import division, print_function
 import numpy as np
+from sklearn.metrics import fbeta_score
 
 __all__ = ["BaseClassifier"]
 
@@ -35,16 +36,26 @@ class BaseClassifier(object):
             and the calculated score.
         """
 
-        N_true_transients_found = np.random.randint(0, high=len(predictors)/3)
-        N_true_transients_missed = np.random.randint(0, high=len(predictors)/3)
-        N_false_positives = np.random.randint(0, high=len(predictors)/3)
-        score = np.random.uniform(0, 1)
+        N = len(classifications)
+        if len(predictors) != N:
+            raise ValueError("number of predictor rows does not match "\
+                             "number of classifications")
+
+        model_classifications = np.zeros(N, dtype=int)
+        for index, object_predictors in enumerate(predictors):
+            model_classifications[index] = self.classify(object_predictors)
+
+        classifications = classifications.astype(int)
+        is_transient = (classifications == 1)
+
+        N_transients_found = np.sum(model_classifications[is_transient] == 1)
+        N_transients_missed = np.sum(model_classifications[is_transient] == 0)
+        N_false_positives = np.sum(model_classifications[~is_transient])
+        score = fbeta_score(classifications, model_classifications, beta=2)
 
         return (
-            N_true_transients_found, 
-            N_true_transients_missed,
+            N_transients_found, 
+            N_transients_missed,
             N_false_positives,
             score
         )
-
-    

@@ -72,6 +72,7 @@ push them to GitHub:
 ````
 git add classifier/classifier.py
 git commit -m "Add Random Forest entry"
+git push --set-upstream origin casey-random-forest
 git push origin
 ````
 
