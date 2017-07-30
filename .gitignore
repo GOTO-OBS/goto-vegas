@@ -1,4 +1,5 @@
 env.sh
 *.pyc
+tmp/
 training_set/
 test_set/

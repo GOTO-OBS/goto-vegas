@@ -3,10 +3,6 @@
 # Push the updated entries.csv and README.md file to GitHub
 if [ -n "$GITHUB_API_KEY" ]; then
   cd $TRAVIS_BUILD_DIR
-  # This is because Travis clones things in a bullshit detached state and shit gets
-  # all Rick and Morty like if you try and hack it into force pushing back to GitHub
-  # Got a better fix? PLEASE OPEN A PR
-  git clone https://github.com/GOTO-OBS/goto-vegas.git tmp
   cp entries.csv tmp/
   cp README.md tmp/
   cd tmp/
