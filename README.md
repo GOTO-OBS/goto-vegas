@@ -7,7 +7,7 @@ Classify transient sources accurately and efficiently.
 # Leaderboard
 | Rank | Time | Branch | Commit | Train Time | Test Time | Transients Found | Transients Missed | False Positives | Score |
 |------|------|--------|--------|------------|-----------|------------------|-------------------|-----------------|-------|
-|1|[2017/07/28 11:58:00](https://travis-ci.org/GOTO-OBS/goto-vegas/builds/258526794)|[master](https://github.com/goto-obs/goto-vegas/tree/master)|[9cf7ee7e](https://github.com/goto-obs/goto-vegas/commit/9cf7ee7e5944a224d622434bb2632c8ee5146200)|2m 8s|0s|14423|12550|2456|0.718|
+|1|[17/07/30 07:40](https://travis-ci.org/GOTO-OBS/goto-vegas/builds/259036213)|[baseline](https://github.com/goto-obs/goto-vegas/tree/baseline)|[5f91179e](https://github.com/goto-obs/goto-vegas/commit/5f91179ecd1fd825be71dc205a1881d0c45e21d8)|0s|13s|56|39|56|0.569|
 
 
 
@@ -72,7 +72,6 @@ push them to GitHub:
 ````
 git add classifier/classifier.py
 git commit -m "Add Random Forest entry"
-git push --set-upstream origin casey-random-forest
 git push origin
 ````
 
