@@ -26,7 +26,9 @@ training_set = vstack([
     Table.read(path, format="csv") for path in training_set_paths])
 training_set_classifications = (training_set["srctype"] == 1)
 del training_set["srctype"]
-
+for name in training_set.dtype.names:
+    if name.startswith("score-"):
+        del training_set[name]
 
 # Load the test set
 test_set_paths = glob("test_set/*.csv")
@@ -38,6 +40,9 @@ test_set = vstack([
     Table.read(path, format="csv") for path in test_set_paths])
 test_set_classifications = (test_set["srctype"] == 1)
 del test_set["srctype"]
+for name in test_set.dtype.names:
+    if name.startwsith("score-"):
+        del test_set[name]
 
 
 classifier = Classifier()
