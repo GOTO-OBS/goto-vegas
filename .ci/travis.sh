@@ -12,7 +12,7 @@ export PATH="$HOME/miniconda/bin:$PATH"
 hash -r
 conda config --set always_yes yes --set changeps1 no
 conda update -q conda
-conda install numpy scipy astropy scikit-learn
+conda install numpy scipy astropy scikit-learn pandas
 conda info -a
 # Clone master into 'tmp' and copy the scoring and base scripts
 git clone https://github.com/GOTO-OBS/goto-vegas.git tmp
