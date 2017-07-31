@@ -41,7 +41,7 @@ test_set = vstack([
 test_set_classifications = (test_set["srctype"] == 1)
 del test_set["srctype"]
 for name in test_set.dtype.names:
-    if name.startwsith("score-"):
+    if name.startswith("score-"):
         del test_set[name]
 
 
