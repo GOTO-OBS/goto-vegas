@@ -4,6 +4,7 @@ from __future__ import division, print_function
 import os
 import requests
 import shutil
+from astropy.table import Table
 
 
 paths = [
@@ -25,6 +26,8 @@ for local_folder, environment_key in paths:
         response = requests.get(remote_path, stream=True, 
             auth=(os.environ.get("HTTP_USER"), os.environ.get("HTTP_PASS")))
         local_path = os.path.join(local_folder, os.path.basename(remote_path))
+        print(response.code)
+
         with open(local_path, "wb") as fp:
             shutil.copyfileobj(response.raw, fp)
         del response
@@ -33,5 +36,15 @@ for local_folder, environment_key in paths:
 
         if local_path.endswith(".gz"):
             os.system("gunzip -v {}".format(local_path))
+            local_path = local_path[:-3]
+
+        # Check the file.
+        try:
+            data = Table.read(local_path, format="csv")
+
+        except:
+            print("Failed to load {} -- removing invalid CSV file".format(
+                local_path))
+            os.system("rm -f {}".format(local_path))
 
         index += 1
