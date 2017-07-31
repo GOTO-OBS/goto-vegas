@@ -28,9 +28,32 @@ class Classifier(BaseClassifier):
         Classify a single object, given some predictors.
 
         :param predictors:
-            A row of predictors for a single object.
+            A row of predictors for a single object.
 
         :returns:
             A single-valued classification for this object.
         """
         return 0
+
+
+    def vclassify(self, predictors, **kwargs):
+        """
+        Classify a list of objects, given some predictors.
+
+        This classifier method takes precedence over `self.classify`,
+        provided it exists and is implemented.
+
+        This method is optional: if it's not implemented (or simply
+        does not exist), the classification is calculated by looping
+        over the classify method.
+
+        :param predictors:
+            An :class:`astropy.table.Table` of objects (rows) with
+            their predictors (columns).
+
+        :returns:
+            An array of classifications (0 or 1 integers) for the
+            input objects.
+        """
+        raise NotImplementedError
+        #return np.zeros(len(predictors), dtype=np.int)
