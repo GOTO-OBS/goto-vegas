@@ -17,4 +17,4 @@ conda info -a
 # Clone master into 'tmp' and copy the scoring and base scripts
 git clone https://github.com/GOTO-OBS/goto-vegas.git tmp
 cp tmp/score.py score.py
-cp tmp/classifier/base.py classifier/base.py
+#cp tmp/classifier/base.py classifier/base.py
