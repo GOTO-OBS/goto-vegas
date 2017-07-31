@@ -48,4 +48,7 @@ class Classifier(BaseClassifier):
         """
 
         data = np.array(predictors.as_void().tolist()).reshape(1, -1)
-        return self.clf.predict(data)
+        return int(self.clf.predict(data))
+
+    def vclassify(self, predictors, **kwargs):
+        return self.clf.predict(predictors.to_pandas()).astype(np.int)
