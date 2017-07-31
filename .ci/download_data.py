@@ -23,10 +23,10 @@ for local_folder, environment_key in paths:
         remote_path = os.environ.get(environment_key.format(index))
         if remote_path is None: break
 
-        response = requests.get(remote_path, stream=True, 
+        response = requests.get(remote_path, stream=True,
             auth=(os.environ.get("HTTP_USER"), os.environ.get("HTTP_PASS")))
         local_path = os.path.join(local_folder, os.path.basename(remote_path))
-        print(response.code)
+        print(response.status_code)
 
         with open(local_path, "wb") as fp:
             shutil.copyfileobj(response.raw, fp)
