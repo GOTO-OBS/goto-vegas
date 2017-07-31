@@ -17,6 +17,9 @@ class BaseClassifier(object):
     def classify(self, predictors, **kwargs):
         raise NotImplementedError("function should be overloaded by subclass")
 
+    def vclassify(self, predictors, **kwargs):
+        raise NotImplementedError("function should be overloaded by subclass")
+
     def score(self, predictors, classifications, **kwargs):
         """
         Score the classifier's performance.
@@ -42,8 +45,11 @@ class BaseClassifier(object):
                              "number of classifications")
 
         model_classifications = np.zeros(N, dtype=int)
-        for index, object_predictors in enumerate(predictors):
-            model_classifications[index] = self.classify(object_predictors)
+        try:  # Try the vectorised version first
+            model_classifications = self.vclassify(predictors)
+        except (NotImplementedError, AttributeError):
+            for index, object_predictors in enumerate(predictors):
+                model_classifications[index] = self.classify(object_predictors)
 
         classifications = classifications.astype(int)
         is_transient = (classifications == 1)
