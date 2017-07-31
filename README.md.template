@@ -9,9 +9,9 @@ Classify transient sources accurately and efficiently.
 
 
 # Submit a classifier for evaluation
-Any member of the [GOTO organization on GitHub](https://github.com/GOTO-OBS) can 
-submit an entry. First, clone this repository and create a branch with a 
-representative name (e.g., something like `<last_name>-<short_description>`) 
+Any member of the [GOTO organization on GitHub](https://github.com/GOTO-OBS) can
+submit an entry. First, clone this repository and create a branch with a
+representative name (e.g., something like `<last_name>-<short_description>`)
 and switch to that branch:
 
 ```
@@ -39,11 +39,11 @@ class Classifier(BaseClassifier):
         """
         Train the model based on a table of predictors and known classifications
         for objects in a training set.
-         
+
         :param predictors:
             An :class:`astropy.table.Table` of possible predictors, where the
             number of rows is the number of objects in the training set.
-           
+
         :param classifications:
             An array of classifications for all objects in the training set.
             This array should have the same length as the number of predictor rows.
@@ -53,10 +53,10 @@ class Classifier(BaseClassifier):
     def classify(self, predictors, **kwargs):
         """
         Classify a single object, given some predictors.
-        
+
         :param predictors:
             A row of predictors for a single object.
-           
+
         :returns:
             A single-valued classification for this object.
         """
