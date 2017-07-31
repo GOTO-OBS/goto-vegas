@@ -30,7 +30,7 @@ class Classifier(BaseClassifier):
                            # Potentially, a different (large, negative?)
                            # value may be better. To test and find out
         self.clf = RandomForestClassifier(n_estimators=100, max_features='sqrt',
-                                          n_jobs=3, class_weight='balanced')
+                                          n_jobs=1, class_weight='balanced')
         self.clf.fit(df, classifications)
 
         return None
