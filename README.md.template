@@ -55,7 +55,7 @@ class Classifier(BaseClassifier):
         Classify a single object, given some predictors.
         
         :param predictors:
-            A row of predictors for a single object.
+            A row of predictors for a single object.
            
         :returns:
             A single-valued classification for this object.
