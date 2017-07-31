@@ -8,7 +8,7 @@ install:
   - source .ci/travis.sh
   - python .ci/download_data.py
 script:
-  - python score.py
+  - travis_wait 30 python score.py
 after_script:
   - source .ci/update.sh
 branches:
