@@ -3,8 +3,9 @@
 from __future__ import division, print_function
 from .base import BaseClassifier
 
-class Classifier(BaseClassifier):
+import numpy as np
 
+class Classifier(BaseClassifier):
 
     def train(self, predictors, classifications, **kwargs):
         """
@@ -33,4 +34,4 @@ class Classifier(BaseClassifier):
         :returns:
             A single-valued classification for this object.
         """
-        return 0
+        return np.zeros(len(predictors))
