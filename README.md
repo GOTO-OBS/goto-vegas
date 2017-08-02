@@ -78,7 +78,7 @@ push them to GitHub:
 ````
 git add classifier/classifier.py
 git commit -m "Add Random Forest entry"
-git push origin
+git push --set-upstream origin casey-random-forest
 ````
 
 Your classifier will be run on the test set and scored automatically by Travis CI.
