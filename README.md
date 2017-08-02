@@ -60,13 +60,13 @@ class Classifier(BaseClassifier):
 
     def classify(self, predictors, **kwargs):
         """
-        Classify a single object, given some predictors.
+        Classify multiple objects, given the predictors for each object.
 
         :param predictors:
-            A row of predictors for a single object.
+            A table of predictors (one row per object).
 
         :returns:
-            A single-valued classification for this object.
+            A single-valued classification for each object.
         """
         return np.zeros(len(predictors))
 ```
