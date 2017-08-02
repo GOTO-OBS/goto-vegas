@@ -65,8 +65,9 @@ class Classifier(BaseClassifier):
         return np.zeros(len(predictors))
 ```
 
-To submit your entry to the leaderboard, you will need to commit your changes and
-push them to GitHub:
+You can test your classifier locally by running `python score.py`. If you want 
+to submit your entry to the leaderboard, you will need to commit your changes 
+and push them to GitHub:
 
 ```
 git add classifier/classifier.py
