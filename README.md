@@ -40,6 +40,8 @@ Here is the worst kind of classifier, which will never find any transient:
 from __future__ import division, print_function
 from .base import BaseClassifier
 
+import numpy as np
+
 class Classifier(BaseClassifier):
 
     def train(self, predictors, classifications, **kwargs):
@@ -59,15 +61,15 @@ class Classifier(BaseClassifier):
 
     def classify(self, predictors, **kwargs):
         """
-        Classify a single object, given some predictors.
-        
+        Classify multiple objects, given the predictors for each object.
+
         :param predictors:
-            A row of predictors for a single object.
-           
+            A table of predictors (one row per object).
+
         :returns:
-            A single-valued classification for this object.
+            A single-valued classification for each object.
         """
-        return 0
+        return np.zeros(len(predictors))
 ````
 
 To submit your entry to the leaderboard, you will need to commit your changes and
