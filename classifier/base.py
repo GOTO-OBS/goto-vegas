@@ -42,11 +42,11 @@ class BaseClassifier(object):
                              "number of classifications")
 
         classifications = self.classify(predictors).astype(int)
-        is_transient = (classifications == 1)
+        is_true_transient = (true_classifications == 1)
 
-        N_transients_found = np.sum(classifications[is_transient] == 1)
-        N_transients_missed = np.sum(classifications[is_transient] == 0)
-        N_false_positives = np.sum(classifications[~is_transient])
+        N_transients_found = np.sum(classifications[is_true_transient] == 1)
+        N_transients_missed = np.sum(classifications[is_true_transient] == 0)
+        N_false_positives = np.sum(classifications[~is_true_transient])
         score = fbeta_score(true_classifications, classifications, beta=2)
 
         return (

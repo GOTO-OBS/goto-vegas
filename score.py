@@ -101,14 +101,13 @@ if os.environ.get("TRAVIS"):
         "{:.3f}".format(score)
     ]
 
-    # Get the latest copy of entries.csv from GitHub, and update it with this entry
+    # Get the latest copy of entries.csv from GitHub
     r = requests.get(
         "https://raw.githubusercontent.com/{TRAVIS_REPO_SLUG}/master/entries.csv"\
         .format(**os.environ))
 
     with open("entries.csv", "w") as fp:
         fp.write("{}\n{}".format(r.content.decode("utf-8"), ",".join(entry)))
-
 
     entries = Table.read("entries.csv", format="csv")
     indices = np.argsort(entries["score"])[::-1]
@@ -133,9 +132,11 @@ if os.environ.get("TRAVIS"):
         kwds.update({k: entry[k] for k in entry.dtype.names})
         leaderboard += leaderboard_row.format(**kwds)
 
-    # Update the README.md
-    with open("README.md.template", "r") as fp:
-        template = fp.read()
+    # Update the README.md, after taking the latest README.md.template 
+    r = requests.get(
+        "https://raw.githubusercontent.com/{TRAVIS_REPO_SLUG}/master/README.md.template"\
+        .format(**os.environ))
+    template = r.content.decode("utf-8")
 
-        with open("README.md", "w") as fp:
-            fp.write(template.format(top10_by_score=leaderboard))
+    with open("README.md", "w") as fp:
+        fp.write(template.format(top10_by_score=leaderboard))
