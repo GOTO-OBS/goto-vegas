@@ -26,7 +26,7 @@ class Classifier(BaseClassifier):
         """
 
         self._rfc = RandomForestClassifier(
-            n_estimators=10, class_weight="balanced")
+            n_estimators=10, class_weight="balanced", random_seed=42)
         self._rfc.fit(self._prepare_predictors(predictors), classifications)
         return None
 
