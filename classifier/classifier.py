@@ -25,13 +25,13 @@ class Classifier(BaseClassifier):
 
     def classify(self, predictors, **kwargs):
         """
-        Classify a single object, given some predictors.
+        Classify multiple objects, given the predictors for each object.
 
         :param predictors:
-            A row of predictors for a single object.
+            A table of predictors (one row per object).
 
         :returns:
-            A single-valued classification for this object.
+            A single-valued classification for each object.
         """
 
         weights = {
@@ -44,41 +44,27 @@ class Classifier(BaseClassifier):
             "hasid": 2
         }
 
-        score = {}
-        score["hasid"] = (predictors["photid"] > 0).astype(int)
-        if predictors["nsat5"] > 5:
-            score["nsat5"] = -0.5
-        elif predictors["nsat5"] > 2:
-            score["nsat5"] = -0.2
+        N = len(predictors)
+        scores = dict([(k, np.zeros(N, dtype=float)) for k in weights.keys()])
+        
+        scores["hasid"] = (predictors["photid"] > 0).astype(int)
 
-        if predictors["nsat7"] > 15:
-            score["nsat7"] = -1
+        scores["nsat5"][predictors["nsat5"] > 2] = -0.2
+        scores["nsat5"][predictors["nsat5"] > 5] = -0.5
+        scores["nsat7"][predictors["nsat7"] > 15] = -1
+        scores["fneg3"][predictors["fneg3"] < 0.01] = 0.5
+        scores["fneg3"][predictors["fneg3"] < 0.1] = 0.2
+        scores["src-s2n"][predictors["src-s2n"] > 50] = 0.5
+        #scores["n2sig5"][predictors["n2sig5"] <= 2] = 0.5
+        #scores["n2sig7"][predictors["n2sig7"] <= 2] = 0.5
+        #scores["n3sig5"][predictors["n3sig5"] <= 2] = 0.5
+        scores["n3sig7"] = np.exp(-predictors["n3sig7"]/10.0) - 1.0
 
-        if predictors["fneg3"] < 0.01:
-            score["fneg3"] = 0.5
-
-        elif predictors["fneg3"] < 0.1:
-            score["fneg3"] = 0.2
-
-        if predictors["src-s2n"] > 50:
-            score["src-s2n"] = 0.5
-
-        if predictors["n2sig5"] <= 2:
-            score["n2sig5"] = 0.5
-
-        if predictors["n2sig7"] <= 2:
-            score["n2sig7"] = 0.5
-
-        if predictors["n3sig5"] <= 2:
-            score["n3sig5"] = 0.5
-
-        score["n3sig7"] = np.exp(-predictors["n3sig7"]/10.0) - 1.0
-
-        weighted_score = 0
+        weighted_scores = np.zeros(N)
         for key, weight in weights.items():
-            weighted_score += score.get(key, 0) * weight
+            weighted_scores += scores[key] * weight
 
-        weighted_score /= sum(weights.values())
+        weighted_scores /= sum(weights.values())
 
-        # Added some cut.
-        return (weighted_score > 0.23).astype(int)
+        # Added some threshold
+        return (weighted_scores > 0.23).astype(int)
