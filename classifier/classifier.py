@@ -3,9 +3,12 @@
 from __future__ import division, print_function
 from .base import BaseClassifier
 
+from sklearn.ensemble import RandomForestClassifier
+
 import numpy as np
 
 class Classifier(BaseClassifier):
+
 
     def train(self, predictors, classifications, **kwargs):
         """
@@ -21,6 +24,10 @@ class Classifier(BaseClassifier):
             This array should have the same length as the number of predictor
             rows.
         """
+
+        self._rfc = RandomForestClassifier(
+            n_estimators=10, class_weight="balanced")
+        self._rfc.fit(self._prepare_predictors(predictors), classifications)
         return None
 
 
@@ -34,4 +41,12 @@ class Classifier(BaseClassifier):
         :returns:
             A single-valued classification for this object.
         """
-        return np.zeros(len(predictors))
+
+        return self._rfc.predict(self._prepare_predictors(predictors))
+
+
+    def _prepare_predictors(self, predictors):
+        """
+        Convert a table of predictors to an array.
+        """
+        return np.vstack([predictors[n] for n in predictors.dtype.names]).T
