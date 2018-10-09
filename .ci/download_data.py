@@ -22,7 +22,7 @@ for local_folder, environment_key in paths:
     while True:
         remote_path = os.environ.get(environment_key.format(index))
         if remote_path is None: break
-
+        print(remote_path.replace("http", ""))
         response = requests.get(remote_path, stream=True,
             auth=(os.environ.get("HTTP_USER"), os.environ.get("HTTP_PASS")))
         local_path = os.path.join(local_folder, os.path.basename(remote_path))
